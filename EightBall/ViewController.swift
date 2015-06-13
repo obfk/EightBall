@@ -25,9 +25,22 @@ class ViewController: UIViewController {
     let answers = [ "\rYES", "\rNO", "\rMAYBE", "I\rDON'T\rKNOW",
         "TRY\rAGAIN\rSOON", "READ\rTHE\rMANUAL" ]
 
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if motion == .MotionShake {
+            fadeOutAnswerView()
+        }
+    }
 
-    func fadeFortune() {
-        fadeOutAnswerView()
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if motion == .MotionShake {
+            newFortune()
+        }
+    }
+
+    override func motionCancelled(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if motion == .MotionShake {
+            newFortune()
+        }
     }
 
     func newFortune() {
